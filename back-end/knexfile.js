@@ -19,12 +19,15 @@ module.exports = {
   development: {
     client: "postgresql",
     pool: { min: 1, max: 5 },
-    connection: DATABASE_URL_DEVELOPMENT,
+    connection: process.env.DEV_CONNECTION,
     migrations: {
       directory: path.join(__dirname, "src", "db", "migrations"),
     },
     seeds: {
       directory: path.join(__dirname, "src", "db", "seeds"),
+    },
+    ssl: {
+      rejectUnauthorized: false
     },
     debug: !!DEBUG,
   },
