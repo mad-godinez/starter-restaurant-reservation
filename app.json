@@ -1,4 +1,9 @@
 {
+  "website":"https://periodic-tables-reserve.herokuapp.com",
+  "success_url": "/dashboard",
+  "scripts": {
+    "postdeploy": "npm run start:dev"
+  },
   "buildpacks": [
     {
       "url": "mars/create-react-app"
