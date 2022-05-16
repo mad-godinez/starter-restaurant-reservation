@@ -16,18 +16,15 @@ const {
 } = process.env;
 
 module.exports = {
-  development: {
-    client: "postgresql",
+  development: { 
+    client: "pg",
     pool: { min: 1, max: 5 },
-    connection: process.env.DEV_CONNECTION,
+    connection: DATABASE_URL_DEVELOPMENT,
     migrations: {
       directory: path.join(__dirname, "src", "db", "migrations"),
     },
     seeds: {
       directory: path.join(__dirname, "src", "db", "seeds"),
-    },
-    ssl: {
-      rejectUnauthorized: false
     },
     debug: !!DEBUG,
   },
