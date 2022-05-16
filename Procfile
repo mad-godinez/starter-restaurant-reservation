@@ -1,1 +1,1 @@
-web: bin/boot
+web: node ./back-end/src/server.js
