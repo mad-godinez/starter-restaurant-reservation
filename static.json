@@ -2,7 +2,7 @@
   "root": "./",
   "clean_urls": false,
   "routes": {
-    "/**": "./front-end/src/index.js"
+    "/**": "./front-end/public/index.html"
   },
   "proxies": {
   "/api/": {
