@@ -11,8 +11,7 @@
     "build": "npm -prefix front-end run build",
     "preinstall": "cd ./back-end && npm install",
     "install": "cd ./front-end && npm install",
-    "start": "npx concurrently \"npm run start:dev --prefix ./back-end\" \"react scripts start --prefix ./front-end\" ",
-
+    "start": "npx concurrently \"npm start --prefix ./back-end\" \"npm start --prefix ./front-end\" ",
     "start:backend": "npm --prefix ./back-end start",
     "start:frontend": "npm --prefix ./front-end start",
     "test": "npm run test:frontend && npm run test:backend",
