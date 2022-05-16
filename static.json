@@ -1,12 +1,15 @@
 {
-  "root": "build/",
+  "root": "./",
   "clean_urls": false,
   "routes": {
-    "/**": "index.html"
+    "/**": "./front-end/public/index.html"
   },
   "proxies": {
   "/api/": {
     "origin": "${NEW_SITE_DOMAIN}"
     }
+  },
+  "envs":{
+    "NODE_ENV": "development"
   }
 }
