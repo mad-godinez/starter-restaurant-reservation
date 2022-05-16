@@ -51,5 +51,11 @@
   "dependencies": {
     "knex": "^2.0.0",
     "pg": "^8.7.3"
+  },
+  "proxy": {
+    "/": {
+      "target": "${NEW_SITE_DOMAIN}"
+    }
   }
+  
 }
