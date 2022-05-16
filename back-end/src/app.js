@@ -11,6 +11,7 @@ const notFound = require("./errors/notFound");
 const reservationsRouter = require("./reservations/reservations.router");
 
 /***** enables CORS from frontend *****/ 
+app.options('*', cors()); // enable pre-flight 
 app.use(cors());
 app.use(express.json());
 
