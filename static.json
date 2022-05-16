@@ -1,10 +1,10 @@
 {  
-  "root": "build/",
+  "root": "./",
   "routes": {
     "/**": "index.html"
   },
   "proxies": {
-    "/api/": {
+    "/": {
       "origin":"${NEW_SITE_DOMAIN}"
     }
   }
