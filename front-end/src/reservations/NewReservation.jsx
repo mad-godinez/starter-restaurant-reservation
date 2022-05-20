@@ -18,7 +18,9 @@ export default function NewReservation(){
   }; 
   const submitReservation = async (event) => {
     event.preventDefault();
-    await upload(formData).then(()=>setFormData({...emptyForm}));
+    await upload(formData)
+      .then(()=> window.open(`/dashboard?date=${formData.reservation_date}`))
+      .then(()=>setFormData({...emptyForm}));
   }
 
   return (
