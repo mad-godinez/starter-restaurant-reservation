@@ -13,7 +13,7 @@ knex.migrate
     console.error(error);
     knex.destroy();
   });
-
+  
 function listener() {
   console.log(`Listening on Port ${PORT}!`);
 }

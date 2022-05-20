@@ -3,13 +3,15 @@
  *
  * @type {Router}
  */
-
 const router = require("express").Router();
 const controller = require("./reservations.controller");
-// const cors = require("cors");
 
-// router.use(cors());
+  router.route("/new")
+    .post(controller.create);
 
-router.route("/").get(controller.list);
+  router.route("/")
+    .get(controller.list)
+  
+
 
 module.exports = router;

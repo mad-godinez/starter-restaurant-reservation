@@ -1,0 +1,25 @@
+.new-res-form{
+  display: flex; 
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-around;
+  max-width: 90%;
+}
+.form-fields label{
+  flex: 1;
+  display: flex; 
+  flex-direction: row;
+  /* align-content: center; */
+  margin: 1em auto;
+}
+.form-fields input{
+  flex: 1;
+  min-width: min-content;
+  max-width: 100%;
+  font-size: 1.2em;
+}
+.btn-group{
+  flex: 1;
+  margin: 1em;
+}

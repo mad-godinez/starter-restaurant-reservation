@@ -5,7 +5,8 @@
     "/**": "./front-end/public/index.html"
   },
   "envs":{
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "LOG_LEVEL": "verbose"
   }
 }
 
