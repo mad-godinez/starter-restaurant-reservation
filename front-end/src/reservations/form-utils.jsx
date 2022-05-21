@@ -27,7 +27,7 @@ async function fetchJson(url, options, onCancel) {
   }
 }
 export default async function upload(data){
-  console.warn(data)
+  console.warn("form utils",data)
   const url = 'http://localhost:5000/reservations/new',
         options = {method:'POST', body:JSON.stringify(data), headers};
   try{

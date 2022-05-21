@@ -15,6 +15,7 @@ function Menu() {
         <Link
           className="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
           to="/"
+          onClick={()=>window.location.reload(true)}
         >
           <div className="sidebar-brand-text mx-3">
             <span>Periodic Tables</span>

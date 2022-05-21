@@ -20,6 +20,8 @@ async function create(req, res){
  * List handler for reservation resources
  */
 async function list(req, res) {
+  // res.send(req.query)
+
   if(req.query.date) return reservationExists(req, res);
   else
     return res.json({data: await res_service.list()});
