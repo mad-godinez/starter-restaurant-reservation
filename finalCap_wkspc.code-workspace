@@ -31,6 +31,9 @@
 			"**/node_modules": false
 		},
 		"search.useGlobalIgnoreFiles": true,
-		"search.useParentIgnoreFiles": true
+		"search.useParentIgnoreFiles": true,
+		"marquee.widgets.npm-stats.packageNames": [
+			"starter-restaurant-reservation"
+		]
 	}
 }

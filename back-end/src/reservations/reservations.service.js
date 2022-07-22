@@ -9,7 +9,8 @@ METHOD:   function listReservation()
 async function listReservation(date) {
   return await knex("reservations")
     .select("*")
-    .where({"reservation_date": date});
+    .where({"reservation_date": date})
+    .orderBy("reservation_time");
 }
 
 /*

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import {useParams,useRouteMatch, Route} from "react-router-dom";
-
+import BtnGroup from '../layout/NavButtons';
 import { fetchJson } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import Parse from '../reservations/ParseData.jsx'
@@ -12,43 +12,54 @@ import Parse from '../reservations/ParseData.jsx'
  * @returns {JSX.Element}
  */
 function Dashboard(props) {
+  const [date, setDate] = useState(props.date)
   const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
 
-  const parsedUrl = new URL(window.location.href);
-  let date = parsedUrl.searchParams.get("date");
-  if(!date)date = props.date; 
+  const fetchResForDate = async() =>{
+    setReservationsError(null);
+    const url = `http://localhost:5000/reservations?date=${date}`;//process.env.REACT_APP_API_BASE_URL 
+    await fetchJson(url,{method:'GET'},[])
+      .then(setReservations)
+      .catch(setReservationsError);
+  }   
 
   useEffect(() => {
+    // const parsedUrl = new URL(window.location.href);
+    setDate(new URL(window.location.href).searchParams.get("date")||props.date);
+    // console.log(date)
     const abortController = new AbortController();
-    const fetchResForDate = async() =>{
-      setReservationsError(null);
-      const url = `http://localhost:5000/reservations?date=${date}`;//process.env.REACT_APP_API_BASE_URL 
-      await fetchJson(url,{method:'GET'},[])
-        .then(setReservations)
-        .catch(setReservationsError);
-    }
     fetchResForDate();
     return () => abortController.abort();
-  },[date,window.location.href])
+  },[date, new URL(window.location.href).searchParams])
 
   return (
     <main>
       <h1>Dashboard</h1>
+      <BtnGroup />
       <ErrorAlert error={reservationsError} />
-      {reservations.length >= 1 ? 
-      <div className="d-md-flex mb-3">
-        <h4 className="mb-3 mr-2">Reservations for </h4>
-        <div>
-          <Parse date={date} data={reservations} />
-        </div>
+      
+      <div>
+        <h4 className="mb-3 mr-3">Reservations:</h4>        
+        {reservations.length >= 1 ? 
+          <table className="daily-res-chart">
+          <caption>Reservations found for this date.</caption>
+          <thead>
+            <tr>
+              <th><strong>NAME: </strong></th>
+              <th><strong>NUMBER:</strong></th>
+              <th><strong>DATE:</strong> </th>
+              <th><strong>TIME: </strong></th>
+              <th><strong>PARTY SIZE:</strong></th>
+            </tr>
+            </thead>
+            <tbody className="resFoundForDate">
+            <Parse date={date} data={reservations} />
+            </tbody>
+          </table> 
+        : 
+          <h4> No Reservations Found. </h4>}
       </div>
-      : 
-      <div className="d-md-flex mb-3">
-        <h4 className="mb-3 mr-3">Reservations for {date}:</h4>
-        <h4> No Reservations Found. </h4>
-      </div>
-      }
     </main>
   );
 }
