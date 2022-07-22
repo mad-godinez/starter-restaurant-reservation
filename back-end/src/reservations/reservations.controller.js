@@ -1,5 +1,5 @@
+const asyncErrorBoundary = require('../errors/asyncErrorBoundary');
 const res_service = require('./reservations.service');
-
 
 /**
  * Verifies that a request query param exists in the data.
@@ -28,5 +28,7 @@ async function list(req, res) {
 }
 
 module.exports = {
-  reservationExists,list,create
+  reservationExists,
+  list: asyncErrorBoundary(list),
+  create: asyncErrorBoundary(create)
 };
