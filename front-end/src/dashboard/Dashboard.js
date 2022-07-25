@@ -4,6 +4,7 @@ import BtnGroup from '../layout/NavButtons';
 import { fetchJson } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import Parse from '../reservations/ParseData.jsx'
+import TableList from './TableList.jsx'
 // import NewReservation from '../reservations/NewReservation.jsx'
 /**
  * Defines the dashboard page.
@@ -54,12 +55,13 @@ function Dashboard(props) {
             </tr>
             </thead>
             <tbody className="resFoundForDate">
-            <Parse date={date} data={reservations} />
+              <Parse date={date} data={reservations} />
             </tbody>
           </table> 
         : 
           <h4> No Reservations Found. </h4>}
       </div>
+      <TableList date={date}/>
     </main>
   );
 }

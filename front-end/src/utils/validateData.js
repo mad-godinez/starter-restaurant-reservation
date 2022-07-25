@@ -67,6 +67,10 @@
     return value >= 1 && value <= 20;
   }
 
+  function checkTable(value){
+    return true; 
+  }
+
   export default function ErrorList(){
     let allErrors = [...errors].map((value, index)=>{
       return(
@@ -94,6 +98,9 @@
         break;
     case "people":
         if(checkPartySize(value)) errors.delete("Party size must be between 1 and 20.");
+        break;
+    default:
+        if(checkTable(value)) errors.delete("Table is not available.");
         break;
     }
     return errors.size === 0; //returns 0 if no errors
