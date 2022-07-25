@@ -1,6 +1,5 @@
 const knex = require("../db/connection");
 
-
 /*
 REQUEST:  GET /reservations?=`${date}`
 RESPONSE: This route will return a reservation that matches the arg. string if it exists 

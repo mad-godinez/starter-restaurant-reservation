@@ -4,8 +4,6 @@
     "capacity": 1
   },
 *****/
-// const knex = require("../connection");
-// const reservations = await knex("reservations").select("*");
 
 exports.up = function(knex) {
   return knex.schema.dropTableIfExists("tables").then(()=>{
