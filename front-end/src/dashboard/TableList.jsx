@@ -1,7 +1,19 @@
-export default function TableList({date}){
+import React, { useEffect, useState } from "react";
+import {ParseTable} from '../reservations/ParseData.jsx';
+import {listTables} from '../utils/api.js';
+
+export default function TableList(){
+  const [tables, setTables] = useState([]);
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    listTables()
+    return () => abortController.abort();
+  },[]);
+
   return (
     <table className="table-list">
-      <caption>Reservations found for this date.</caption>
+      <caption>Table availability for today.</caption>
     <thead>
       <tr>
         <th><strong>TABLE NAME: </strong></th>
@@ -9,11 +21,7 @@ export default function TableList({date}){
       </tr>
       </thead>
       <tbody className="tablesFoundForDate">
-        {/* <Parse date={date} data={reservations} /> */}
-        <tr>
-          <td>{date.split('T')[0]}</td>
-          {/* <td data-table-id-status={`${table.table_id}`}></td> */}
-        </tr>
+        {/* <Parse table={}/> */}
       </tbody>
     </table> )|| null;
 }

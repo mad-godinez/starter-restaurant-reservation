@@ -11,6 +11,9 @@ app.use(express.json());
 const reservationsRouter = require("./reservations/reservations.router");
 app.use("/reservations", reservationsRouter);
 
+const tablesRouter = require("./tables/tables.router");
+app.use("/tables", tablesRouter);
+
 /***** ERROR HANDLERS *****/
 const notFound = require("./errors/notFound");
 app.use(notFound);

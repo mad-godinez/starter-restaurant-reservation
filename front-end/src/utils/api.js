@@ -5,7 +5,7 @@
 import formatReservationDate from "./format-reservation-date";
 import formatReservationTime from "./format-reservation-date";
 
-const API_BASE_URL ="https://backend-ptables-res.herokuapp.com"; 
+const API_BASE_URL = "http://localhost:5000" //"https://backend-ptables-res.herokuapp.com"; 
 
 /**
  * Defines the default headers for these functions to work with `json-server`
@@ -59,15 +59,35 @@ export async function fetchJson(url, options, onCancel) {
 
 export async function listReservations(params, signal) {
   const url = new URL(`${API_BASE_URL}/reservations`);
-  
+  params = params.replaceAll('"','');
+  // console.warn(params);
+  if(params) url.searchParams.append("date", params.toString());
+
   // console.log("params", url.searchParams.append(params.toString()), url.searchParams)
   
-  Object.entries(params).forEach(([key, value]) =>
-  {
-    if(key) url.searchParams.append(key, value.toString())
-  }
-  );
+  // Object.entries(params).forEach(([key, value]) =>
+  // {
+  //   if(key) url.searchParams.append(key, value.toString())
+  // }
+  // );
   return await fetchJson(url, { headers, signal }, [])
     .then(formatReservationDate)
     .then(formatReservationTime);
+}
+export async function listTables(params, signal) {
+  const url = new URL(`${API_BASE_URL}/tables`);
+  // params = params.replaceAll('"','');
+  // console.warn(params);
+  // if(params) url.searchParams.append("date", params.toString());
+
+  // console.log("params", url.searchParams.append(params.toString()), url.searchParams)
+  
+  // Object.entries(params).forEach(([key, value]) =>
+  // {
+  //   if(key) url.searchParams.append(key, value.toString())
+  // }
+  // );
+  return await fetchJson(url, { headers, signal }, [])
+  //   .then(formatReservationDate)
+  //   .then(formatReservationTime);
 }
