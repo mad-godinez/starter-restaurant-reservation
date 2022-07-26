@@ -7,9 +7,9 @@ export default function TableList(){
 
   useEffect(() => {
     const abortController = new AbortController();
-    listTables()
+    listTables([], abortController.signal).then(res => setTables(res));
     return () => abortController.abort();
-  },[]);
+  },[tables]);
 
   return (
     <table className="table-list">
@@ -21,7 +21,7 @@ export default function TableList(){
       </tr>
       </thead>
       <tbody className="tablesFoundForDate">
-        {/* <Parse table={}/> */}
+        <ParseTable table={tables}/>
       </tbody>
     </table> )|| null;
 }

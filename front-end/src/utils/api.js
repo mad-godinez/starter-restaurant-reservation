@@ -76,11 +76,9 @@ export async function listReservations(params, signal) {
 }
 export async function listTables(params, signal) {
   const url = new URL(`${API_BASE_URL}/tables`);
-  // params = params.replaceAll('"','');
-  // console.warn(params);
+  
+  console.log(await fetchJson(url, { headers, signal }, []));
   // if(params) url.searchParams.append("date", params.toString());
-
-  // console.log("params", url.searchParams.append(params.toString()), url.searchParams)
   
   // Object.entries(params).forEach(([key, value]) =>
   // {
