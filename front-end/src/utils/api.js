@@ -1,11 +1,11 @@
 /**
  * Defines the base URL for the API.
  * The default values is overridden by the `API_BASE_URL` environment variable.
-//  */
+ */
 // import formatReservationDate from "./format-reservation-date";
 // import formatReservationTime from "./format-reservation-date";
 
-const API_BASE_URL = "https://backend-ptables-res.herokuapp.com"; 
+const API_BASE_URL = "http:/localhost:5000" || "https://backend-ptables-res.herokuapp.com"; 
 
 /**
  * Defines the default headers for these functions to work with `json-server`

@@ -33,7 +33,7 @@ async function list(req, res) {
 
 module.exports = {
   // reservationExists,
-  update: asyncErrorBoundary(update),
   list: asyncErrorBoundary(list),
+  update: asyncErrorBoundary(update),
   create: asyncErrorBoundary(create)
 };
