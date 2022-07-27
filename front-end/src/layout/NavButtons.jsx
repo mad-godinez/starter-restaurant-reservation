@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {useHistory} from "react-router-dom";
+import {today as getToday} from '../utils/date-time.js'
+
 
 export default function BtnGroup(){
   const history = useHistory();
-  let today = Date.parse(new Date()),
+
+  let today = new URL(window.location.href).searchParams.get("date") ? 
+             Date.parse(new Date(new URL(window.location.href).searchParams.get("date"))): Date.parse(new Date()),
       yesterday = new Date(today-(1000*60*60*24)),
-      tomorrow = new Date((today)+(1*(1000*60*60*24))); 
-  today = new Date(today); 
+      tomorrow = new Date((today)+(1000*60*60*24)); 
+  today = new Date(); 
 
   const goTo = (date) => {
     let dateStr = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();

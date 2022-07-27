@@ -5,13 +5,14 @@
  */
 const router = require("express").Router();
 const controller = require("./reservations.controller");
-const tablesCtrl = require("./tables/tables.controller");
+const tablesCtrl = require("../tables/tables.controller");
 
   router.route("/new")
     .post(controller.create);
 
   router.route("/")
-    .get(tablesCtrl.list, controller.list)
+    .get(controller.list)
+    // .get(tablesCtrl.list, controller.list)
   
 
 

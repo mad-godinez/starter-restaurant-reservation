@@ -1,5 +1,5 @@
 export default function Parse({data}){
-
+  console.log(data)
   const reservations = JSON.parse(JSON.stringify(data)).map(({first_name, last_name, mobile_number, reservation_date, reservation_time, people},index)=>{
     return (
       <tr key={index}>
@@ -18,14 +18,18 @@ export default function Parse({data}){
   });
   return reservations;
 };
-export function ParseTable({table}){
-  const tables = JSON.parse(JSON.stringify(table)).map(({table_name, table_status},index)=>{
+export function ParseTable({data}){
+  // console.log(data)
+  const tables = data.map(({reservation_id, table_name, capacity},index)=>{
     return (
       <tr key={index}>
         <td>{table_name}</td>
-        <td data-table-id-status={`${table.table_id}`}>{table_status}</td>
+        <td>{capacity}</td>
+        <td data-table-id-status={index}>{
+          reservation_id === null ? "Free" : "Occupied" 
+        }</td>
       </tr> 
     );
-  }).filter(({table_status})=>table_status === 'available');
+  });
   return tables;
 }

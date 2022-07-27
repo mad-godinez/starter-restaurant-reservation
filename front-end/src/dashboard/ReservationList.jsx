@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Parse from '../reservations/ParseData.jsx';
 import {listReservations} from '../utils/api.js';
+import {today} from '../utils/date-time.js'
 
-export default function ReservationList(props){
+export default function ReservationList(){
   const [reservations, setReservations] = useState([]);
-  const [date, setDate] = useState(props.date);
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     const abortController = new AbortController();
-
-    setDate(new URL(window.location.href).searchParams.get("date"));
+    let param = new URL(window.location.href).searchParams.get("date") ? 
+                new URL(window.location.href).searchParams.get("date") : today();
+    setDate(param);
     listReservations(date)
       .then(res => setReservations(res))
       .catch(err => console.error(err));
@@ -18,7 +20,7 @@ export default function ReservationList(props){
   }, [date]); 
 
   return ( 
-     reservations ?
+     reservations.length >= 1 ?
       <section>
         <h4 className="mb-3 mr-3">Reservations:</h4>         
         <table className="daily-res-chart">

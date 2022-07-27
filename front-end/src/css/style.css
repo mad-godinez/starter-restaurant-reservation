@@ -106,4 +106,6 @@ th, td {
 }
 .side-bar{
   height: 100%;
+}.table-list{
+  margin: 10%;
 }

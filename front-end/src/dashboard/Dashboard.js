@@ -12,8 +12,7 @@ import TableList from './TableList.jsx';
  *  the date for which the user wants to view reservations.
  * @returns {JSX.Element}
  */
-function Dashboard() {
-  
+function Dashboard(props){
   return (
     <main>
       <h1>Dashboard</h1>
