@@ -5,8 +5,8 @@ const table_service = require('./tables.service');
  * Creates a tables table in the database.
  */
 async function create(req, res){
-  const {table_name, capacity} = req.body;
-  return res.status(204).json({data: await table_service.create(table_name, capacity)});
+  // console.warn(req.body)
+  return res.status(204).json({data: await table_service.create(req.body.data)});
 }
 
 /**
@@ -24,16 +24,11 @@ async function update(req, res){
  * Lists all tables in the database.
  */ 
 async function list(req, res) {
-  const methodName = "list"; 
-  req.log.debug({ __filename, methodName }); 
   res.json({data: await table_service.list()});
-
-  req.log.trace({ __filename, methodName, return: true, data });
 }
 
 
 module.exports = {
-  // reservationExists,
   list: asyncErrorBoundary(list),
   update: asyncErrorBoundary(update),
   create: asyncErrorBoundary(create)

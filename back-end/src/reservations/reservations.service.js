@@ -22,7 +22,7 @@ async function list() {
 }
 
 async function create(res_data){
-  return await knex("reservations").insert({first_name, last_name, mobile_number, reservation_date, reservation_time, people}).returning("*");
+  return await knex("reservations").insert(res_data).returning("*").first();
 }
 
 module.exports = {

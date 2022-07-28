@@ -34,8 +34,9 @@ async function fetchJson(url, options, onCancel) {
 
 export default async function upload(data){
   console.log("form utils",data)
+  const url = new URL(`${API_BASE_URL}/tables/new`)
   const options = {method:'POST', body:JSON.stringify(data), headers};
   try{
-    return await fetchJson(API_BASE_URL,options,{});
+    return await fetchJson(url,options,{});
   }finally{return -1;}
 }

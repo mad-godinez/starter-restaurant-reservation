@@ -15,7 +15,7 @@ export default function TableList(){
       setDate(param);
     } 
     getDate();
-    listTables(abortController.signal)
+    listTables()
       .then(res => setTables(res))
       .catch(err => console.error(err));
     getDate();

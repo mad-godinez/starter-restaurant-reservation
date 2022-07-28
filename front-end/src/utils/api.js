@@ -5,8 +5,7 @@
  * Defines the base URL for the API.
  * The default values is overridden by the `API_BASE_URL` environment variable.
  */
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-//"http:/localhost:5000" || "https://backend-ptables-res.herokuapp.com"; 
+const API_BASE_URL = "http:/localhost:5000"||process.env.REACT_APP_API_BASE_URL || "http:/localhost:5000"; 
 
 /**
  * Defines the default headers for these functions to work with `json-server`
@@ -58,7 +57,7 @@ export async function fetchJson(url, options, onCancel) {
  *  a promise that resolves to a possibly empty array of reservation saved in the database.
  */
 
-export async function listReservations(params, signal) {
+export async function listReservations(params,signal) {
   const url = new URL(`${API_BASE_URL}/reservations`);
   // params = params.replaceAll('"','');
   if(params) url.searchParams.append("date", params.toString());
@@ -76,9 +75,10 @@ export async function listReservations(params, signal) {
     // .then(formatReservationDate)
     // .then(formatReservationTime);
 }
-export async function listTables(signal) {
+export async function listTables() {
+  // headers.append(mode:'cors')
   const url = new URL(`${API_BASE_URL}/tables`),
-        response = await fetchJson(url, { headers, signal }, []);
+        response = await fetchJson(url,  []);
 
   return Array.isArray(response) ? response : []; 
 }
