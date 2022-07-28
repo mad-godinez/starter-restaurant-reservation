@@ -36,8 +36,6 @@ export async function fetchJson(url, options, onCancel) {
     if (response.status === 204) {
       return null;
     }
-    console.warn(url.toString())
-
     const payload = await response.json();
 
     if (payload.error) {

@@ -11,7 +11,7 @@
     "build": "npm -prefix front-end run build",
     "preinstall": "cd ./back-end && npm install",
     "install": "cd ./front-end && npm install",
-    "start": "npx concurrently \"cd ./back-end && npm start\" \" cd ./front-end && npm start\" ",
+    "start": "npx concurrently \"cd ./back-end && npm start:dev\" \" cd ./front-end && npm start\" ",
     "start:backend": "npm --prefix ./back-end start",
     "start:frontend": "npm --prefix ./front-end start",
     "test": "npm run test:frontend && npm run test:backend",
@@ -51,7 +51,6 @@
     "@mars/heroku-js-runtime-env": "^3.0.2",
     "concurrently": "^7.2.0",
     "knex": "^2.0.0",
-    "nanoid": "^4.0.0",
     "pg": "^8.7.3"
   },
   "devDependencies": {

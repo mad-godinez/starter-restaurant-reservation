@@ -24,10 +24,11 @@ async function update(req, res){
  * Lists all tables in the database.
  */ 
 async function list(req, res) {
-  // res.send(req.query)
-  console.log("INSIDE TABLE CTRLR: ",req.query);
-  if(req.query.date)
-    return res.json({data: await table_service.list()});
+  const methodName = "list"; 
+  req.log.debug({ __filename, methodName }); 
+  res.json({data: await table_service.list()});
+
+  req.log.trace({ __filename, methodName, return: true, data });
 }
 
 
