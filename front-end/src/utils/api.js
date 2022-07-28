@@ -79,8 +79,6 @@ export async function listReservations(params, signal) {
     // .then(formatReservationTime);
 }
 export async function listTables(signal) {
-  // headers.append('Accept','');
-  console.log(headers.set('Access-Control-Allow-Origin','*'))
   const url = new URL(`${API_BASE_URL}/tables`),
         response = await fetchJson(url, { headers, signal }, []);
 

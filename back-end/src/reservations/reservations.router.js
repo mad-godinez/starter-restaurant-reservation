@@ -11,7 +11,7 @@ const tablesCtrl = require("../tables/tables.controller");
     .post(controller.create);
 
   router.route("/")
-    // .get(controller.list)
+    .get(controller.list)
     .get(tablesCtrl.list, controller.list)
   
 

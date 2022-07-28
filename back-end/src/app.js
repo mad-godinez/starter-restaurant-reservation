@@ -1,6 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const logger = require("./logger-config");
+
+//...
+app.use(logger);
+//...
 
 /***** enables CORS from frontend *****/ 
   app.options('*',cors({methods: "GET"})); // enable pre-flight 
@@ -10,9 +15,9 @@ const app = express();
 /***** ROUTES *****/
 const reservationsRouter = require("./reservations/reservations.router");
 const tablesRouter = require('./tables/tables.router');
-
-  app.use("/reservations", reservationsRouter);
-  app.use("/tables", tablesRouter);
+  app.use(["/reservations", "/tables"], reservationsRouter, tablesRouter);
+  // app.use("/reservations", reservationsRouter);
+  // app.use("/tables", tablesRouter);
 
 
 /***** ERROR HANDLERS *****/

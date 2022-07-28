@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const controller = require("./tables.controller");
-const cors = require("cors");
+// const cors = require("cors");
 
-const corsList = cors({methods: "GET"});    // updated
+// const corsList = cors({methods: "GET"});    // updated
   
   // router.route("/:reservation_id/seat")
   //   .put(controller.update);
@@ -11,8 +11,9 @@ const corsList = cors({methods: "GET"});    // updated
     .post(controller.create);
 
   router.route("/")
-    .get(corsList, controller.list)         // updated
-    .options(corsList)                      // updated
+    .get(controller.list)
+    // .get(corsList, controller.list)         // updated
+    // .options(corsList)                      // updated
 
 
 module.exports = router;

@@ -25,7 +25,7 @@ async function update(req, res){
  */ 
 async function list(req, res) {
   // res.send(req.query)
-
+  console.log("INSIDE TABLE CTRLR: ",req.query);
   if(req.query.date)
     return res.json({data: await table_service.list()});
 }
