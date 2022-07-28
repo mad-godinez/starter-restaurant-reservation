@@ -26,11 +26,16 @@ async function fetchJson(url, options, onCancel) {
     return Promise.resolve(onCancel);
   }
 }
+/**
+ * Defines the base URL for the API.
+ * The default values is overridden by the `API_BASE_URL` environment variable.
+ */
+ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 export default async function upload(data){
   console.log("form utils",data)
-  const url = 'http://localhost:5000/reservations/new',
-        options = {method:'POST', body:JSON.stringify(data), headers};
+  const options = {method:'POST', body:JSON.stringify(data), headers};
   try{
-    return await fetchJson(url,options,{});
+    return await fetchJson(API_BASE_URL,options,{});
   }finally{return -1;}
 }

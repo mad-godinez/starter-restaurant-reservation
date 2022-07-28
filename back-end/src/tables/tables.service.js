@@ -8,6 +8,7 @@ async function create({table_name, capacity}) {
   return await knex("tables").insert({table_name, capacity}).returning("*");
 }
 async function list(){
+  console.log("listing tables.....");
   return await knex("tables").select("*");
 }
 module.exports = {

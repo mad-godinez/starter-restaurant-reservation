@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 
 /***** enables CORS from frontend *****/ 
-  app.options('*', cors()); // enable pre-flight 
+  app.options('*',cors({methods: "GET"})); // enable pre-flight 
   app.use(cors());
   app.use(express.json());
 

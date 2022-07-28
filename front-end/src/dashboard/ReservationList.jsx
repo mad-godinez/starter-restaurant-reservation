@@ -11,7 +11,7 @@ export default function ReservationList(){
     const abortController = new AbortController();
     let param = new URL(window.location.href).searchParams.get("date") ? 
                 new URL(window.location.href).searchParams.get("date") : today();
-    setDate(param);
+    setDate(param, abortController.signal);
     listReservations(date)
       .then(res => setReservations(res))
       .catch(err => console.error(err));

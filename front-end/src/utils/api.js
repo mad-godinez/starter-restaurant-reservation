@@ -1,11 +1,12 @@
+
+// import formatReservationDate from "./format-reservation-date";
+// import formatReservationTime from "./format-reservation-date";
 /**
  * Defines the base URL for the API.
  * The default values is overridden by the `API_BASE_URL` environment variable.
  */
-// import formatReservationDate from "./format-reservation-date";
-// import formatReservationTime from "./format-reservation-date";
-
-const API_BASE_URL = "http:/localhost:5000" || "https://backend-ptables-res.herokuapp.com"; 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+//"http:/localhost:5000" || "https://backend-ptables-res.herokuapp.com"; 
 
 /**
  * Defines the default headers for these functions to work with `json-server`
@@ -40,6 +41,7 @@ export async function fetchJson(url, options, onCancel) {
     const payload = await response.json();
 
     if (payload.error) {
+      console.trace(payload.error)
       return Promise.reject({ message: payload.error });
     }
     return payload.data;
@@ -49,7 +51,7 @@ export async function fetchJson(url, options, onCancel) {
       throw error;
     }
     return Promise.resolve(onCancel);
-  }
+  }finally{return -1;}
 }
 
 /**
@@ -76,9 +78,11 @@ export async function listReservations(params, signal) {
     // .then(formatReservationDate)
     // .then(formatReservationTime);
 }
-export async function listTables() {
+export async function listTables(signal) {
+  // headers.append('Accept','');
+  console.log(headers.set('Access-Control-Allow-Origin','*'))
   const url = new URL(`${API_BASE_URL}/tables`),
-        response = await fetchJson(url); 
+        response = await fetchJson(url, { headers, signal }, []);
 
   return Array.isArray(response) ? response : []; 
 }
